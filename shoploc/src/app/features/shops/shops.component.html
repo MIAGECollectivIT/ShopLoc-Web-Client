@@ -1,0 +1,19 @@
+<main class="container mt-4">
+  <h1>Liste des boutiques</h1>
+
+  @if (loading()) {
+    <p>Chargement...</p>
+  } @else if (error(); as message) {
+    <p class="alert alert-danger" role="alert">{{ message }}</p>
+  } @else if (shops().length === 0) {
+    <p>Aucune boutique trouvée.</p>
+  } @else {
+    <ul class="list-group">
+      @for (shop of shops(); track $index) {
+        <li class="list-group-item">
+          <pre class="mb-0">{{ shop | json }}</pre>
+        </li>
+      }
+    </ul>
+  }
+</main>
